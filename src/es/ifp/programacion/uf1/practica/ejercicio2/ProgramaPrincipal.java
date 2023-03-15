@@ -18,9 +18,9 @@ public class ProgramaPrincipal {
      */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
-        double num1 = 0;
-        double num2 = 0;
-        double result = 0;
+        float num1 = 0;
+        float num2 = 0;
+        float result = 0;
 
         String resultMessage;
         String option;
@@ -28,54 +28,45 @@ public class ProgramaPrincipal {
 
         boolean exit = false;
         boolean isOperation = true;
-        boolean numMessagePrinted = false;
 
         System.out.println("============ CALCULADORA :: GESTIÓN DE AGUAS, SL ============");
 
         do {
             option = menu(sc);
-            if (isOneNumberOperation(option)) {
-                do {
-                    if (!numMessagePrinted) {
-                        System.out.println("Introduzca el número");
-                        numMessagePrinted = true;
-                    }
-                    num1 = Integer.parseInt(sc.next());
-                    if (num1 <= 0) {
-                        sc.nextLine();
-                        System.out.println("Introduzca de nuevo el número");
-                    }
-                } while (num1 <= 0);
-            } else if (isOperation(option)) {
-                System.out.println("Introduzca el primer número:");
-                num1 = Double.parseDouble(sc.next());
-                System.out.println("Introduzca el segundo número:");
-                num2 = Double.parseDouble(sc.next());
-
-            }
 
             switch (option) {
                 case "1":
+                    num1 = getNumericInput(sc, "Introduzca el primer número:");
+                    num2 = getNumericInput(sc, "Introduzca el segundo número:");
                     result = sum(num1, num2);
                     operation = "suma";
                     break;
                 case "2":
+                    num1 = getNumericInput(sc, "Introduzca el primer número:");
+                    num2 = getNumericInput(sc, "Introduzca el segundo número:");
                     result = subtract(num1, num2);
                     operation = "resta";
                     break;
                 case "3":
+                    num1 = getNumericInput(sc, "Introduzca el primer número:");
+                    num2 = getNumericInput(sc, "Introduzca el segundo número:");
                     result = multiply(num1, num2);
                     operation = "multiplicación";
                     break;
                 case "4":
+                    num1 = getNumericInput(sc, "Introduzca el primer número:");
+                    num2 = getNumberNonZero(sc, "Introduzca el segundo número:");
                     result = divide(num1, num2);
                     operation = "división";
                     break;
                 case "5":
+                    num1 = getNumericInput(sc, "Introduzca el primer número:");
+                    num2 = getNumericInput(sc, "Introduzca el segundo número:");
                     result = module(num1, num2);
                     operation = "resto";
                     break;
                 case "6":
+                    num1 = getNumberNonNegative(sc, "Introduzca el número:");
                     result = factorial((int) num1);
                     operation = "factorial";
                     break;
@@ -107,7 +98,7 @@ public class ProgramaPrincipal {
      * @param num2 el segundo número para sumar
      * @return la suma de num1 y num2
      */
-    private static double sum(double num1, double num2) {
+    private static float sum(float num1, float num2) {
         return num1 + num2;
     }
 
@@ -118,7 +109,7 @@ public class ProgramaPrincipal {
      * @param num2 el número a restar de num1
      * @return la resta de num2 de num1
      */
-    private static double subtract(double num1, double num2) {
+    private static float subtract(float num1, float num2) {
         return num1 - num2;
     }
 
@@ -129,7 +120,7 @@ public class ProgramaPrincipal {
      * @param num2 el segundo número a multiplicar
      * @return la multiplicación de num1 y num2
      */
-    private static double multiply(double num1, double num2) {
+    private static float multiply(float num1, float num2) {
         return num1 * num2;
     }
 
@@ -140,7 +131,7 @@ public class ProgramaPrincipal {
      * @param num2 el número por el cual se va a dividir num1
      * @return la división de num1 entre num2
      */
-    private static double divide(double num1, double num2) {
+    private static float divide(float num1, float num2) {
         return num1 / num2;
     }
 
@@ -151,7 +142,7 @@ public class ProgramaPrincipal {
      * @param num2 el número que se utilizará para calcular el módulo de num1
      * @return el módulo de num1 y num2
      */
-    private static double module(double num1, double num2) {
+    private static float module(float num1, float num2) {
         return num1 % num2;
     }
 
@@ -159,7 +150,7 @@ public class ProgramaPrincipal {
      * @param num1 número del que se quiere calcular el factorial
      * @return double resultado del factorial
      */
-    private static double factorial(int num1) {
+    private static float factorial(int num1) {
         int result = 1;
         for (int i = 1; i <= num1; i++) {
             result *= i;
@@ -192,7 +183,6 @@ public class ProgramaPrincipal {
         return option;
     }
 
-
     /**
      * Verifica si la opción proporcionada es válida para el programa.
      *
@@ -214,26 +204,6 @@ public class ProgramaPrincipal {
             default:
                 return false;
         }
-    }
-
-    /**
-     * Verifica si la opción proporcionada es una operación matemática válida.
-     *
-     * @param option la opción proporcionada por el usuario.
-     * @return verdadero si la opción es una operación matemática válida, falso si no lo es.
-     */
-    private static boolean isOperation(String option) {
-        switch (option) {
-            case "1":
-            case "2":
-            case "3":
-            case "4":
-            case "5":
-                return true;
-            default:
-                return false;
-        }
-
     }
 
     /**
@@ -262,13 +232,70 @@ public class ProgramaPrincipal {
      * @param result          el resultado de la operación realizada
      * @return una cadena formateada que contiene el mensaje de resultado
      */
-    private static String resultMsg(String operationString, double num1, double num2, double result) {
+    private static String resultMsg(String operationString, float num1, float num2, float result) {
         String bar = "=============================================================";
         if (isOneNumberOperation(operationString))
             return bar + "\n" + "El resultado de la " + operationString + " de " + (int) num1 + " es " + (int) result
                     + "\n" + bar;
         else
-            return bar + "\n" + "El resultado de la " + operationString + " de " + num1 + " y " + num2 + " es " + result
+            return bar + "\n" + "El resultado del " + operationString + " de " + num1 + " y " + num2 + " es " + result
                     + "\n" + bar;
+    }
+
+    /**
+    
+    Obtiene un valor numérico ingresado por el usuario a través del objeto Scanner.
+    @param input objeto Scanner utilizado para obtener la entrada del usuario.
+    @param message mensaje que se muestra al usuario para solicitar la entrada.
+    @return valor numérico ingresado por el usuario.
+    
+    @see java.util.Scanner
+    */
+    public static float getNumericInput(Scanner input, String message) {
+        float num;
+        System.out.println(message);
+        num = Float.parseFloat(input.next());
+        return num;
+    }
+
+    /**
+    
+    Obtiene un valor numérico y se asegura que el valor devuelto sea no negativo, es ingresado por el usuario a través del objeto Scanner.
+    @param input objeto Scanner utilizado para obtener la entrada del usuario.
+    @param message mensaje que se muestra al usuario para solicitar la entrada.
+    @return valor numérico no negativo ingresado por el usuario.
+    
+    @see java.util.Scanner
+    */
+    public static float getNumberNonNegative(Scanner input, String message) {
+        float num;
+        do {
+            num = getNumericInput(input, message);
+            if ((float) 0 > num) {
+                System.out.println("El número debe ser positivo");
+            }
+        } while ((float) 0 > num);
+        return num;
+    }
+
+    /**
+    
+    Obtiene un valor numérico y se asegura que el valor devuelto no sea 0, es ingresado por el usuario a través del objeto Scanner proporcionado.
+    @param input objeto Scanner utilizado para obtener la entrada del usuario.
+    @param message mensaje que se muestra al usuario para solicitar la entrada.
+    @return valor numérico distinto de cero ingresado por el usuario.
+    
+    @see java.util.Scanner
+    */
+    public static float getNumberNonZero(Scanner input, String message) {
+        float num;
+        do {
+            num = getNumericInput(input, message);
+            if ((float) 0 == num) {
+                System.out.println("El número debe ser distinto de cero");
+                System.out.println("Introduzca un número distinto de cero");
+            }
+        } while ((float) 0 == num);
+        return num;
     }
 }

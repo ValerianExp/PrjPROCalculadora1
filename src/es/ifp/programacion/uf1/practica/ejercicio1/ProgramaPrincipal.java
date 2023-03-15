@@ -34,7 +34,6 @@ public class ProgramaPrincipal {
         boolean exit = false;
         boolean isOptionValid = true;
 
-
         String bar = "============================================================";
         System.out.println("============ CALCULADORA :: GESTIÓN DE AGUAS, SL ============");
 
@@ -52,44 +51,50 @@ public class ProgramaPrincipal {
 
             switch (option) {
                 case "1":
+                    operation = "suma";
                     System.out.println("Introduzca el primer número:");
                     num1 = sc.nextFloat();
                     System.out.println("Introduzca el segundo número:");
                     num2 = sc.nextFloat();
                     result = num1 + num2;
-                    operation = "suma";
                     break;
                 case "2":
+                    operation = "resta";
                     System.out.println("Introduzca el primer número:");
                     num1 = sc.nextFloat();
                     System.out.println("Introduzca el segundo número:");
                     num2 = sc.nextFloat();
                     result = num1 - num2;
-                    operation = "resta";
                     break;
                 case "3":
+                    operation = "multiplicación";
                     System.out.println("Introduzca el primer número:");
                     num1 = sc.nextFloat();
                     System.out.println("Introduzca el segundo número:");
                     num2 = sc.nextFloat();
                     result = num1 * num2;
-                    operation = "multiplicación";
                     break;
                 case "4":
+                    operation = "división";
                     System.out.println("Introduzca el primer número:");
                     num1 = sc.nextFloat();
                     System.out.println("Introduzca el segundo número:");
-                    num2 = sc.nextFloat();
+                    do {
+                        num2 = sc.nextFloat();
+                        if ((float) 0 == num2) {
+                            System.out.println("Introduzca un número distinto de cero");
+                        }
+                    } while ((float) 0 == num2);
+
                     result = num1 / num2;
-                    operation = "división";
                     break;
                 case "5":
+                    operation = "resto";
                     System.out.println("Introduzca el primer número:");
                     num1 = sc.nextFloat();
                     System.out.println("Introduzca el segundo número:");
                     num2 = sc.nextFloat();
                     result = num1 % num2;
-                    operation = "resto";
                     break;
                 case "6":
                 case "s":
