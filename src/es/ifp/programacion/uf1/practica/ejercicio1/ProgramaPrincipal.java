@@ -21,9 +21,9 @@ public class ProgramaPrincipal {
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 
         // Variables para la lógica de la calculadora
-        double num1 = 0;
-        double num2 = 0;
-        double result = 0;
+        float num1 = 0;
+        float num2 = 0;
+        float result = 0;
 
         // Variables para la presentación de resultados
         String resultMessage;
@@ -53,41 +53,41 @@ public class ProgramaPrincipal {
             switch (option) {
                 case "1":
                     System.out.println("Introduzca el primer número:");
-                    num1 = sc.nextDouble();
+                    num1 = sc.nextFloat();
                     System.out.println("Introduzca el segundo número:");
-                    num2 = sc.nextDouble();
+                    num2 = sc.nextFloat();
                     result = num1 + num2;
                     operation = "suma";
                     break;
                 case "2":
                     System.out.println("Introduzca el primer número:");
-                    num1 = sc.nextDouble();
+                    num1 = sc.nextFloat();
                     System.out.println("Introduzca el segundo número:");
-                    num2 = sc.nextDouble();
+                    num2 = sc.nextFloat();
                     result = num1 - num2;
                     operation = "resta";
                     break;
                 case "3":
                     System.out.println("Introduzca el primer número:");
-                    num1 = sc.nextDouble();
+                    num1 = sc.nextFloat();
                     System.out.println("Introduzca el segundo número:");
-                    num2 = sc.nextDouble();
+                    num2 = sc.nextFloat();
                     result = num1 * num2;
                     operation = "multiplicación";
                     break;
                 case "4":
                     System.out.println("Introduzca el primer número:");
-                    num1 = sc.nextDouble();
+                    num1 = sc.nextFloat();
                     System.out.println("Introduzca el segundo número:");
-                    num2 = sc.nextDouble();
+                    num2 = sc.nextFloat();
                     result = num1 / num2;
                     operation = "división";
                     break;
                 case "5":
                     System.out.println("Introduzca el primer número:");
-                    num1 = sc.nextDouble();
+                    num1 = sc.nextFloat();
                     System.out.println("Introduzca el segundo número:");
-                    num2 = sc.nextDouble();
+                    num2 = sc.nextFloat();
                     result = num1 % num2;
                     operation = "resto";
                     break;
